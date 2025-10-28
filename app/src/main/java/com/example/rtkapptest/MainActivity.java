@@ -15,6 +15,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     EditText inputText;
+    EditText inputTextIp;
     Button btnConnect, btnSend;
     Socket socket;
     OutputStream outputStream;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         inputText = findViewById(R.id.inputText);
+        inputTextIp = findViewById(R.id.inputTextIp);
         btnConnect = findViewById(R.id.btnConnect);
         btnSend = findViewById(R.id.btnSend);
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 Log.v("myTAG", "Connect to server elindult!");
-                String ip_addr = "192.168.1.165";
+                String ip_addr = String.valueOf(inputTextIp.getText());
                 Log.v("myTAG", ip_addr);
                 Socket socket = new Socket(ip_addr, 5000);
                 OutputStream out = socket.getOutputStream();
